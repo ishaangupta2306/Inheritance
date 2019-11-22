@@ -2,43 +2,54 @@
  The purpose of this code is to design the underlying model used for a simple Scratch-like programming language. Classes represent different programming language strucrures, and then a user can program by combining the different structures together.
 
 The seven types included in the project
-State: The state represents the variables and their contents. Because our language is geared to true novices, the only type we will allow is integer types. Since everything is an integer, we will not have errors if a variable is used before it is assigned a value.
-The State should contain a Hashtable from the Java API. You should set the key of the hashtable to be String (this will represent the names of the variables) and the values of the hashtable to be type Integer (this will represent the values stored in the variables. That is, you will represent the state as a Hashtable<String, Integer>. The State class should have the following methods: 
+
+State: The state represents the variables and their contents. Because language is geared to true novices, the only type allowed is integer types. Since everything is an integer, we will not have errors if a variable is used before it is assigned a value.
+The State contains a Hashtable from the Java API. The key of the hashtable is set to be String (this will represent the names of the variables) and the values of the hashtable to be type Integer (this will represent the values stored in the variables. That is, State is represented as a Hashtable<String, Integer>. The State class  have the following methods: 
+
 update takes a variable name and a variable value. The name and value pair should be added to the hash table.
 lookup takes a variable name and returns the int/Integer value of the variable, as stored in the hashtable. If there is no such variable in the hashtable, the value returned should be 0. (No error should be given because we want to avoid all errors in our language.)
 
-Variable: The Variable type represents a variable in our program. A Variable type instance should be created with one argument: a string name, and the type should have the following methods: 
+
+Variable: The Variable type represents a variable in our program. A Variable type instance should be created with one argument: a string name, and the type have the following methods: 
 value: takes a state as input and returns the int/Integer value associated with this variable name that is stored in the input state.
 getName: should return the name of the variable.
 toString: should return the name of the variable.
 
-Number: The Number type represents a whole number. A Number type instance should be created with one argument: an int/Integer value, and the type should have the following methods: 
+
+Number: The Number type represents a whole number. A Number type instance should be created with one argument: an int/Integer value, and the type have the following methods: 
 value: takes a state as input and returns the int/Integer value of the number.
 toString: returns a string representation of the numeric value of the number.
 
-ArithmeticOperation: The ArithmeticOperation represents an arithmetic operation between two values. The ArithmeticOperation type should contain the following enum type to represent the possible operations for the language (you are free to add additional operators if you wish): 
+
+ArithmeticOperation: The ArithmeticOperation represents an arithmetic operation between two values. The ArithmeticOperation type should contain the following enum type to represent the possible operations for the language 
+
 public enum Operator { Add, Sub, Mult, Div, Rem; }
 The operators represent the +, -, *, /, and % operations.
 
-An ArithmeticOperation type instance should be created with three arguments: an operation that is from the above Operator enum type, and two expressions that represent the left operand expression and the right operand expression. The type should allow any language structure that has an int/Integer value to be a possible expression. The ArithmeticOperation type should have the following methods: 
-value: takes a state as input and returns the int/Integer value that is the result of applying the operation to the values of each of the operand expressions. The state should be used to get the values of the expressions.
+An ArithmeticOperation type instance is created with three arguments: an operation that is from the above Operator enum type, and two expressions that represent the left operand expression and the right operand expression. The type allows any language structure that has an int/Integer value to be a possible expression. The ArithmeticOperation type have the following methods: 
+value: takes a state as input and returns the int/Integer value that is the result of applying the operation to the values of each of the operand expressions. The state is used to get the values of the expressions.
 toString: should return a string that first contains a string representation of the left operand followed by a space, a string representation of the operator, a space, and the string representation of the right operand.
 
-Comparison: The Comparison type represents a comparison between two expressions. The Comparison type should contain the following enum type to represent the possible comparisons for the langauge (you are free to add additional operators if you wish): 
+
+Comparison: The Comparison type represents a comparison between two expressions. The Comparison type contains the following enum type to represent the possible comparisons for the langauge : 
 public enum Operator { LT, LTE, GT, GTE, EQ, NEQ; }
 The operators represent the < <=, >, >=, ==, and != operations.
 
-The Comparison type instance should be created with three arguments: an operation that is from the above Operator enum type, and two expressions that represent the left operand expression and the right operand expression. The type should allow any language structure that has an int/Integer value to be a possible expression. The Comparison type should have the following methods: 
+The Comparison type instance is created with three arguments: an operation that is from the above Operator enum type, and two expressions that represent the left operand expression and the right operand expression. The type allows any language structure that has an int/Integer value to be a possible expression. The Comparison type have the following methods: 
+
 value: takes a state as input and returns the boolean/Boolean value that is the result of applying the operation to the values of each of the operand expressions. The state should be used to get the values of the expressions.
 toString: should return a string that first contains a string representation of the left operand followed by a space, a string representation of the operator, a space, and the string representation of the right operand.
 
-BooleanOperation: The BooleanOperation type represents a boolean operation between two boolean conditions. The BooleanOperation type should contain the following enum type to represent the possible operations for the language (you are free to add additional operators if you wish): 
+
+BooleanOperation: The BooleanOperation type represents a boolean operation between two boolean conditions. The BooleanOperation type  contains the following enum type to represent the possible operations for the language: 
 public enum Operator { And, Or; }
 The operators represent the && and || operations.
 
-An BooleanOperation type instance should be created with three arguments: an operation that is from the above Operator enum type, and two boolean conditions that represent the left operand and the right operand. The type should allow any language structure that has a boolean/Boolean value to be a possible condition. The BooleanOperation type should have the following methods: 
+An BooleanOperation type instance is created with three arguments: an operation that is from the above Operator enum type, and two boolean conditions that represent the left operand and the right operand. The type allows any language structure that has a boolean/Boolean value to be a possible condition. The BooleanOperation type has the following methods: 
+
 value: takes a state as input and returns the boolean/Boolean value that is the result of applying the operation to the values of each of the operand conditions. The state should be used to get the values of the conditions.
-toString: should return a string that first contains a string representation of the left operand followed by a space, a string representation of the operator, a space, and the string representation of the right operand.
+toString: returns a string that first contains a string representation of the left operand followed by a space, a string representation of the operator, a space, and the string representation of the right operand.
+
 
 Assignment: The Assignment type represents an assignment operation/statement in the language. An Assignment type instance should be created with two arguments, a variable and an expression. Any language structure that has an int/Integer value should be allowed as the expression. The Assignment type should have the following methods: 
 execute: takes a state and returns nothing. The method updates the state to set the value of the variable to be the value of the expression. The state should be used to get the value of the expression.
